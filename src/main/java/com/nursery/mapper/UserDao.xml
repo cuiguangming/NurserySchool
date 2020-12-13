@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nursery.mapper.UserMapper">
+
+	<resultMap id="userMap" type="com.nursery.bean.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="phoneNo" property="phoneNo" jdbcType="VARCHAR" />
+		<result column="pswd" property="pswd" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<!-- <result column="nickName" property="nickName" jdbcType="VARCHAR" /> 
+			<result column="failTimes" property="failTimes" jdbcType="Integer" /> <result 
+			column="lastFailTime" property="lastFailTime" jdbcType="VARCHAR" /> <result 
+			column="locked" property="locked" jdbcType="Boolean" /> -->
+
+	</resultMap>
+
+	<!-- , salt, nickName, failTimes, lastFailTime, locked -->
+	<sql id="columns">
+		id, name, phoneNo, pswd, salt
+	</sql>
+
+	<select id="selectById" resultMap="userMap">
+		select
+		<include refid="columns" />
+		from user where id = #{id}
+	</select>
+
+	<select id="selectByPhoneNo" resultMap="userMap">
+		select
+		<include refid="columns" />
+		from user where phoneNo = #{phoneNo}
+	</select>
+
+	<insert id="insert">
+		insert into user(`name`, phoneNo, pswd, salt)
+		values(#{name}, #{phoneNo}, #{pswd}, #{salt});
+	</insert>
+
+</mapper>
+

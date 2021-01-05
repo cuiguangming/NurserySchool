@@ -1,9 +1,9 @@
-package com.nursery.dao;
+package com.nursery.mapper;
 
 import com.nursery.common.dao.CrudDao;
 import com.nursery.common.logger.Operation;
 
-public interface OperationDao extends CrudDao<Operation>{
+public interface OperationMapper extends CrudDao<Operation>{
 
 
 

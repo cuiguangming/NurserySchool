@@ -1,5 +1,7 @@
 package com.nursery.controller;
 
+import com.nursery.common.annotations.OperationAnnotation;
+import com.nursery.common.logger.OperationAspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +23,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	private OperationAspect operationAspect;
 	// =================================================
 
+
 	@RequestMapping(value = "/login/do", method = RequestMethod.POST)
+	@OperationAnnotation(context = "用户登录")
 	public Result<String> userLoginDo(@RequestBody User userInfo) {
+
 		Result<String> result = new Result<String>();
 		User dbUserInfo = userService.getUserByPhoneNo(userInfo.getPhoneNo());
 		if (dbUserInfo != null) {

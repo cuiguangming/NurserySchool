@@ -3,12 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.nursery.dao.OperationDao">
+<mapper namespace="com.nursery.mapper.OperationMapper">
 
 
-    <select id="insert" >
-
-        insert into
-    </select>
+    <insert id="insert" >
+        insert into logger (id,params,method_name,class_name,content,uid) values(#{id},#{params},#{methodName},#{className},#{content},#{uid})
+    </insert>
 
 </mapper>
